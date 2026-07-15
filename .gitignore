@@ -1,0 +1,31 @@
+# --- Python e Django ---
+# Ignora os arquivos compilados do Python (arquivos temporários)
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Ignora o ambiente virtual (se você criou um como venv ou .venv)
+venv/
+.venv/
+env/
+ENV/
+
+# --- Banco de Dados ---
+# O ideal no GitHub é não subir o banco de dados de testes local.
+# Assim, cada pessoa que baixar o seu projeto cria o seu próprio banco limpo.
+db.sqlite3
+
+# --- Sistema Operacional ---
+# Arquivos que o Windows e o Mac criam sozinhos nas pastas
+.DS_Store
+Thumbs.db
+
+# --- IDEs e Editores ---
+# Configurações pessoais do seu VS Code ou PyCharm
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp

@@ -1,0 +1,522 @@
+{% load static %}
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Para o navegador não procurar por ícones -->
+    <link rel="icon" href="data:," />
+    <title>IMAGINIX</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        * {
+          box-sizing: border-box;
+        }
+      }
+      body {
+        background-color: #0a0a0a;
+        color: #f0f0f0;
+        font-family:
+          system-ui,
+          -apple-system,
+          "Segoe UI",
+          Roboto,
+          "Helvetica Neue",
+          sans-serif;
+        line-height: 1.6;
+        letter-spacing: 0.01em;
+        padding-bottom: 0;
+        margin: 0;
+      }
+      /* navbar preta fosca */
+      .navbar {
+        background-color: #000000 !important;
+        border-bottom: 1px solid #2a2a2a;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+      }
+      .navbar .navbar-brand,
+      .navbar .nav-link,
+      .navbar .navbar-text {
+        color: #f5f5f5 !important;
+        font-weight: 450;
+      }
+      .navbar .nav-link.active {
+        color: #ffffff !important;
+        border-bottom: 1px solid #6a6a6a;
+      }
+      .navbar .nav-link:hover {
+        color: #c0c0c0 !important;
+      }
+      .navbar-toggler {
+        border-color: #444;
+        filter: invert(0.85);
+      }
+      .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255,0.95)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+      }
+      .dropdown-menu {
+        background-color: #111;
+        border: 1px solid #2c2c2c;
+        border-radius: 0.75rem;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.9);
+      }
+      .dropdown-item {
+        color: #e0e0e0;
+      }
+      .dropdown-item:hover {
+        background-color: #232323;
+        color: #fff;
+      }
+      .dropdown-divider {
+        border-top: 1px solid #333;
+      }
+      /* cards, inputs, botões – preto com toque minimalista */
+      .card {
+        background-color: #0f0f0f;
+        border: 1px solid #272727 !important;
+        border-radius: 1.25rem;
+        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.7);
+        color: #f0f0f0;
+      }
+      .card .text-primary {
+        color: #d4d4d4 !important;
+      }
+      .card .text-secondary {
+        color: #b0b0b0 !important;
+      }
+      .bg-body-tertiary {
+        background-color: #050505 !important;
+      }
+      .bg-light {
+        background-color: #0a0a0a !important;
+      }
+      .form-control {
+        background-color: #161616;
+        border: 1px solid #333;
+        color: #f0f0f0;
+        border-radius: 0.6rem;
+        padding: 0.6rem 1rem;
+        transition: 0.15s ease;
+      }
+      .form-control:focus {
+        background-color: #1d1d1d;
+        border-color: #6a6a6a;
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.04);
+        color: #fff;
+      }
+      .form-control::placeholder {
+        color: #9a9a9a;
+        opacity: 0.75;
+      }
+      .btn {
+        border-radius: 2.2rem;
+        font-weight: 500;
+        letter-spacing: 0.3px;
+        padding: 0.5rem 1.6rem;
+        border: 1px solid transparent;
+        transition: 0.15s ease;
+      }
+      .btn-success {
+        background-color: #1c1c1c;
+        border-color: #3d3d3d;
+        color: #f0f0f0;
+      }
+      .btn-success:hover {
+        background-color: #2b2b2b;
+        border-color: #5a5a5a;
+        color: #ffffff;
+      }
+      .btn-primary {
+        background-color: #1c1c1c;
+        border-color: #3d3d3d;
+        color: #f0f0f0;
+      }
+      .btn-primary:hover {
+        background-color: #2b2b2b;
+        border-color: #5a5a5a;
+        color: #ffffff;
+      }
+      .btn-outline-success {
+        color: #d0d0d0;
+        border-color: #3d3d3d;
+      }
+      .btn-outline-success:hover {
+        background-color: #222;
+        border-color: #6a6a6a;
+        color: #fff;
+      }
+      .btn-secondary {
+        background-color: #1f1f1f;
+        border-color: #3a3a3a;
+        color: #ddd;
+      }
+      .btn-secondary:hover {
+        background-color: #303030;
+        border-color: #5a5a5a;
+        color: #fff;
+      }
+      .text-primary {
+        color: #d4d4d4 !important;
+      }
+      .text-secondary {
+        color: #aaaaaa !important;
+      }
+      .text-danger {
+        color: #d48a8a !important;
+      }
+      .modal-content {
+        background-color: #141414;
+        border: 1px solid #2f2f2f;
+        border-radius: 1.5rem;
+        color: #f0f0f0;
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.95);
+      }
+      .modal-body h3 {
+        color: #e0b3b3;
+      }
+      /* footer preto */
+      footer {
+        background-color: #000000 !important;
+        color: #9a9a9a;
+        border-top: 1px solid #1f1f1f;
+        margin-top: 2rem;
+        padding: 1.2rem 0;
+        font-size: 0.9rem;
+        letter-spacing: 0.3px;
+      }
+      footer .text-center {
+        background-color: transparent !important;
+      }
+      .container h1 {
+        font-weight: 450;
+        letter-spacing: -0.3px;
+        color: #f5f5f5;
+      }
+      .container .h4 {
+        font-weight: 450;
+        letter-spacing: -0.2px;
+        color: #dbdbdb;
+      }
+      .container .h4.text-primary {
+        color: #d0d0d0 !important;
+      }
+      .container .h4.text-secondary {
+        color: #b5b5b5 !important;
+      }
+      hr {
+        border-top: 1px solid #2a2a2a;
+        opacity: 0.5;
+        margin: 2.5rem 0;
+      }
+      label.form-label {
+        color: #d0d0d0;
+        font-weight: 450;
+      }
+      .font-weight-bold {
+        font-weight: 470;
+      }
+      /* vitrine / cards dos brinquedos */
+      #vitrine .card {
+        background-color: #121212;
+        border: 1px solid #262626;
+        border-radius: 1rem;
+        padding: 0.75rem 0.75rem 0.25rem 0.75rem;
+        transition: 0.1s ease;
+        color: #eee;
+      }
+      #vitrine .card:hover {
+        border-color: #3f3f3f;
+        background-color: #191919;
+      }
+      #vitrine .card .card-title {
+        color: #f5f5f5;
+        font-weight: 460;
+      }
+      #vitrine .card .card-text {
+        color: #b5b5b5;
+      }
+      #vitrine .btn-sm {
+        background-color: #1f1f1f;
+        border: 1px solid #3a3a3a;
+        color: #ddd;
+        border-radius: 2rem;
+        padding: 0.25rem 1rem;
+      }
+      #vitrine .btn-sm:hover {
+        background-color: #2f2f2f;
+        border-color: #5a5a5a;
+        color: #fff;
+      }
+      .shadow-sm {
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6) !important;
+      }
+      .border-0 {
+        border: none !important;
+      }
+      .form-select {
+        background-color: #161616;
+        border: 1px solid #333;
+        color: #eee;
+      }
+      .form-select:focus {
+        background-color: #1d1d1d;
+        border-color: #6a6a6a;
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.04);
+      }
+      .form-select option {
+        background-color: #111;
+      }
+      .navbar-nav .nav-link.disabled {
+        color: #6a6a6a !important;
+        opacity: 0.7;
+      }
+      .dropdown-item:active {
+        background-color: #2a2a2a;
+      }
+      .dropdown-item.disabled {
+        color: #5a5a5a;
+      }
+      .d-flex .btn-outline-success {
+        color: #d0d0d0;
+        border-color: #3d3d3d;
+      }
+      .d-flex .btn-outline-success:hover {
+        background-color: #242424;
+        border-color: #6a6a6a;
+        color: #fff;
+      }
+      input[type="date"]::-webkit-calendar-picker-indicator {
+        filter: invert(0.8);
+      }
+      input[type="number"]::-webkit-inner-spin-button {
+        filter: invert(0.8);
+      }
+      /* ajuste extra para o bg-body-tertiary do footer */
+      .bg-body-tertiary.text-center.text-lg-start {
+        background-color: #000 !important;
+      }
+      .text-center .text-primary {
+        color: #cfcfcf !important;
+      }
+      .row .col-md-6 .card {
+        background-color: #0f0f0f;
+      }
+    </style>
+  </head>
+  <body class="bg-light">
+    <header>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand"><span>IMAGINIX</span></a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  aria-current="page"
+                  href="https://github.com/mellpg"
+                  >Github</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  aria-current="page"
+                  href="https://www.linkedin.com/in/mel-pereira-3207903a9/"
+                  >Linkedin</a
+                >
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Mais opções
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="">Repositório</a></li>
+                </ul>
+              </li>
+            </ul>
+            <form class="d-flex" role="search" id="formBusca">
+              <input
+                class="form-control me-2"
+                type="search"
+                id="inputBusca"
+                placeholder="Buscar brinquedo..."
+                aria-label="Search"
+              />
+            </form>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <div class="container py-5">
+      <h1 class="text-center mb-5">
+        Painel de Controle da Loja de Brinquedos IMAGINIX
+      </h1>
+
+      <div class="card p-4 shadow-sm mb-5 border-0">
+        <h2 class="h4 text-primary mb-3">
+          ➕ Cadastrar Brinquedo Específico no Banco
+        </h2>
+        <form id="formCadastro" class="row g-3">
+          <div class="col-md-5">
+            <input
+              type="text"
+              id="nomeBrinquedo"
+              class="form-control"
+              placeholder="Nome (Ex: Urso de Pelúcia)"
+              required
+            />
+          </div>
+          <div class="col-md-3">
+            <input
+              type="number"
+              step="0.01"
+              id="precoBrinquedo"
+              class="form-control"
+              placeholder="Preço (Ex: 89.90)"
+              required
+            />
+          </div>
+          <div class="col-md-2">
+            <input
+              type="number"
+              id="estoqueBrinquedo"
+              class="form-control"
+              placeholder="Estoque Inicial"
+              required
+            />
+          </div>
+          <div class="col-md-2">
+            <button type="submit" class="btn btn-success w-100">
+              Salvar no Banco
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <h2 class="h4 mb-4 text-secondary">
+        📦 Prateleira de Brinquedos em Estoque
+      </h2>
+      <div id="vitrine" class="row g-4 mb-5"></div>
+
+      <hr class="my-5" />
+
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="card p-4 shadow-sm border-0">
+            <h2 class="h4 text-center text-primary mb-4">
+              🔧 Agendar Oficina de Conserto
+            </h2>
+            <form id="formAgendamento">
+              <div class="mb-3">
+                <label class="form-label font-weight-bold">Seu Nome</label>
+                <input
+                  type="text"
+                  id="cliente"
+                  class="form-control"
+                  placeholder="Digite seu nome completo"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label class="form-label font-weight-bold"
+                  >Qual o Brinquedo?</label
+                >
+                <input
+                  type="text"
+                  id="brinquedoForm"
+                  class="form-control"
+                  placeholder="Ex: Carrinho de Controle"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label class="form-label font-weight-bold"
+                  >Data Preferencial</label
+                >
+                <input
+                  type="date"
+                  id="dataServico"
+                  class="form-control"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn btn-primary w-100">
+                Confirmar e Gravar no Banco
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modalEsgotado" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content text-center p-4">
+          <div class="modal-body">
+            <h3 class="text-danger mb-3">🚨 ESGOTADO!</h3>
+            <p class="fs-5">
+              Desculpe, a última unidade desse brinquedo acabou de ser vendida
+              no nosso Banco de Dados!
+            </p>
+            <button
+              type="button"
+              class="btn btn-secondary mt-3"
+              data-bs-dismiss="modal"
+            >
+              Entendido
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'script.js' %}"></script>
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+      <div
+        id="notificacaoToast"
+        class="toast align-items-center text-white bg-dark border border-secondary"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
+        <div class="d-flex">
+          <div class="toast-body" id="notificacaoTexto"></div>
+          <button
+            type="button"
+            class="btn-close btn-close-white me-2 m-auto"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+      </div>
+    </div>
+  </body>
+  <footer class="bg-body-tertiary text-center text-lg-start">
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05)">
+      Criado em 15/07/2026
+    </div>
+  </footer>
+</html>
