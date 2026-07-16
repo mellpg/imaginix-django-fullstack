@@ -41,7 +41,7 @@ Certifique-se de ter o **Python 3.10+** instalado em sua máquina.
 
 1. **Clone o repositório:**
    ```bash
-   git clone [https://github.com/seu-usuario/imaginix-django-fullstack.git](https://github.com/seu-usuario/imaginix-django-fullstack.git)
+   git clone https://github.com/mellpg/imaginix-django-fullstack.git
    cd imaginix-django-fullstack
 2. **Crie e ative um ambiente virtual:**
    ```bash
